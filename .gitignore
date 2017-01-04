@@ -64,7 +64,7 @@ local.properties
 *.dotCover
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
-#packages/
+packages/
 
 # Visual C++ cache files
 ipch/
@@ -176,6 +176,28 @@ mpn/*.asm
 Makefile
 mpir.h
 config.h
+config.m4
 config.log
 config.status
-
+libtool
+stamp-h1
+autom4te.cache/
+yasm/YASM-VERSION-FILE
+yasm/YASM-VERSION.h
+yasm/autom4te.cache/
+yasm/.deps/
+yasm/results
+yasm/config/config.guess
+yasm/config/config.sub
+yasm/configure.gnu
+yasm/configure.lineno
+yasm/libyasm-stdint.h
+yasm/po/Makefile.in
+yasm/po/POTFILES
+yasm/stamp-h1
+yasm_mac.inc
+gmp.h
+longlong.h
+gmp-mparam.h
+tune/sqr_basecase.c
+autoscript

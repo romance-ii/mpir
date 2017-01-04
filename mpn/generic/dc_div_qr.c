@@ -9,8 +9,6 @@
 
 Copyright 2006, 2007, 2009 Free Software Foundation, Inc.
 
-Copyright 2010 William Hart (minor modifications)
-
 This file is part of the GNU MP Library.
 
 The GNU MP Library is free software; you can redistribute it and/or modify
@@ -82,7 +80,7 @@ mpn_dc_div_qr (mp_ptr qp,
 	  n0 = np[-2];
 	  d1 = dp[-1];
 	  d0 = dp[-2];
-
+     
 	  ASSERT (n2 < d1 || (n2 == d1 && n1 <= d0));
 
 	  if (UNLIKELY (n2 == d1) && n1 == d0)
@@ -93,7 +91,7 @@ mpn_dc_div_qr (mp_ptr qp,
 	    }
 	  else
 	    {
-	      tdiv_qr_3by2 (q, n1, n0, n2, n1, n0, d1, d0, dinv);
+	      udiv_qr_3by2 (q, n1, n0, n2, n1, n0, d1, d0, dinv);
 
 	      if (dn > 2)
 		{

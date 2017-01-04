@@ -9,7 +9,7 @@
 
 Copyright 2007, 2009 Free Software Foundation, Inc.
 
-Copyright 2010 William Hart (minor modifications)
+Copyright 2010, 2013 William Hart
 
 This file is part of the GNU MP Library.
 
@@ -45,7 +45,7 @@ mpn_sb_div_q (mp_ptr qp,
   mp_limb_t q;
   mp_limb_t flag;
 
-  mp_size_t dn_orig = dn;
+  mp_size_t dn_orig = dn, qn_orig;
   mp_srcptr dp_orig = dp;
   mp_ptr np_orig = np;
 
@@ -88,7 +88,7 @@ mpn_sb_div_q (mp_ptr qp,
 	}
       else
 	{
-	  tdiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
+	  udiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
 
 	  cy = mpn_submul_1 (np - dn, dp, dn, q);
 
@@ -134,7 +134,7 @@ mpn_sb_div_q (mp_ptr qp,
 	    }
 	  else
 	    {
-	      tdiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
+	      udiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
 
 	      cy = mpn_submul_1 (np - dn, dp, dn, q);
 
@@ -178,7 +178,7 @@ mpn_sb_div_q (mp_ptr qp,
 	}
       else
 	{
-	  tdiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
+	  udiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
 
 	  np[0] = n0;
 	  np[1] = n1;
@@ -187,8 +187,8 @@ mpn_sb_div_q (mp_ptr qp,
       *--qp = q;
     }
   ASSERT_ALWAYS (np[1] == n1);
-  np += 2;
 
+  np += 2;
 
   dn = dn_orig;
   if (UNLIKELY (n1 < (dn & flag)))

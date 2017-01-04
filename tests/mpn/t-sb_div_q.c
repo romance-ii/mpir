@@ -64,7 +64,7 @@ check_sb_div_q (void)
 
       MPN_COPY(np2, np, nn);
       
-      invert_1(dip, dp[dn - 1], dp[dn - 2]);
+      mpir_invert_pi1(dip, dp[dn - 1], dp[dn - 2]);
       
       qn = nn - dn + 1;
          
@@ -105,7 +105,7 @@ check_sb_div_q (void)
       if (s >= 0)
       {
          printf ("failed:\n");
-         printf ("nn = %lu, dn = %lu, qn = %lu, rn = %lu\n\n", nn, dn, qn, rn);
+         printf ("nn = %zd, dn = %zd, qn = %zd, rn = %zd\n\n", nn, dn, qn, rn);
          gmp_printf (" np: %Nx\n\n", np2, nn);
          gmp_printf (" dp: %Nx\n\n", dp, dn);
          gmp_printf (" qp: %Nx\n\n", qp, qn);

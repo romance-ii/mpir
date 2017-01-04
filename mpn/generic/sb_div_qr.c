@@ -9,7 +9,7 @@
 
 Copyright 2007, 2009 Free Software Foundation, Inc.
 
-Copyright 2010 William Hart (minor modifications)
+Copyright 2010, 2013 William Hart
 
 This file is part of the GNU MP Library.
 
@@ -41,7 +41,7 @@ mpn_sb_div_qr (mp_ptr qp,
   mp_size_t i;
   mp_limb_t n1, n0;
   mp_limb_t d1, d0;
-  mp_limb_t cy, cy1;
+  mp_limb_t cy, cy1, cy2;
   mp_limb_t q;
 
   ASSERT (dn > 2);
@@ -54,12 +54,13 @@ mpn_sb_div_qr (mp_ptr qp,
   if (qh != 0)
     mpn_sub_n (np - dn, np - dn, dp, dn);
 
+  d1 = dp[dn - 1];
+
   qp += nn - dn;
 
   dn -= 2;			/* offset dn by 2 for main division loops,
 				   saving two iterations in mpn_submul_1.  */
-  d1 = dp[dn + 1];
-  d0 = dp[dn + 0];
+  d0 = dp[dn];
 
   np -= 2;
 
@@ -76,20 +77,18 @@ mpn_sb_div_qr (mp_ptr qp,
 	}
       else
 	{
-	  tdiv_qr_3by2 (q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
+	  udiv_qr_3by2(q, n1, n0, n1, np[1], np[0], d1, d0, dinv);
 
-	  cy = mpn_submul_1 (np - dn, dp, dn, q);
+     cy2 = mpn_submul_1 (np - dn, dp, dn, q);
 
-	  cy1 = n0 < cy;
-	  n0 = (n0 - cy) & GMP_NUMB_MASK;
-	  cy = n1 < cy1;
-	  n1 = (n1 - cy1) & GMP_NUMB_MASK;
+	  sub_333(cy, n1, n0, 0, n1, n0, 0, 0, cy2);
+
 	  np[0] = n0;
 
 	  if (UNLIKELY (cy != 0))
 	    {
 	      n1 += d1 + mpn_add_n (np - dn, np - dn, dp, dn + 1);
-	      q--;
+         q--;
 	    }
 	}
 

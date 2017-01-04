@@ -86,6 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(MPDIR);..\..\lib\$(intDir);.\;..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -104,6 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(MPDIR);..\..\lib\$(intDir);.\;..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -119,6 +121,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(MPDIR);..\..\lib\$(intDir);.\;..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -138,6 +141,7 @@
       <AdditionalIncludeDirectories>$(MPDIR);..\..\lib\$(intDir);.\;..\;..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Lib>
       <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -161,16 +165,22 @@
     <ClCompile Include="..\..\tune\fac_ui_small.c" />
     <ClCompile Include="..\..\tune\freq.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\tune\gcdextod.c" />
     <ClCompile Include="..\..\tune\gcdextos.c" />
-    <ClCompile Include="..\..\tune\gcd_bin.c" />
+    <ClCompile Include="..\..\tune\gcdext_double.c" />
+    <ClCompile Include="..\..\tune\gcdext_single.c" />
+    <ClCompile Include="..\..\tune\hgcd_appr_lehmer.c" />
+    <ClCompile Include="..\..\tune\hgcd_lehmer.c" />
+    <ClCompile Include="..\..\tune\hgcd_reduce_1.c" />
+    <ClCompile Include="..\..\tune\hgcd_reduce_2.c" />
     <ClCompile Include="..\..\tune\jacbase1.c" />
     <ClCompile Include="..\..\tune\jacbase2.c" />
     <ClCompile Include="..\..\tune\jacbase3.c" />
+    <ClCompile Include="..\..\tune\jacbase4.c" />
     <ClCompile Include="..\..\tune\modlinv.c" />
     <ClCompile Include="..\..\tune\mod_1_div.c" />
     <ClCompile Include="..\..\tune\mod_1_inv.c" />
